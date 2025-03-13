@@ -28,7 +28,7 @@ class ResultFragment : Fragment() {
         viewModelFactory = ResultViewModelFactory(result)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ResultViewModel::class.java)
 
-        binding.resMessage.text = viewModel.result
+        binding.resultViewModel = viewModel
 
         binding.newButton.setOnClickListener {
             view.findNavController().navigate(R.id.action_resultFragment_to_inputFragment)

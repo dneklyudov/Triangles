@@ -80,24 +80,21 @@ class InputViewModel: ViewModel() {
     }
 
     fun changeLen1(s: String) {
-        if (s != "" && _len1.value != s) {
-            isChanged1 = true
-            _len1.value = s
-        }
+        if (_len1.value == s) return
+        isChanged1 = true
+        _len1.value = s
     }
 
     fun changeLen2(s: String) {
-        if (s != "" && _len2.value != s) {
-            isChanged2 = true
-            _len2.value = s
-        }
+        if (_len2.value == s) return
+        isChanged2 = true
+        _len2.value = s
     }
 
     fun changeLen3(s: String) {
-        if (s != "" && _len3.value != s) {
-            isChanged3 = true
-            _len3.value = s
-        }
+        if (_len3.value == s) return
+        isChanged3 = true
+        _len3.value = s
     }
 
     fun resultMessage(): String {
