@@ -7,4 +7,7 @@
     <string name="application_title">Треугольники</string>
     <string name="check">Проверить</string>
     <string name="again">Начать снова</string>
+    <string name="placeholder1">Длина первой стороны</string>
+    <string name="placeholder2">Длина второй стороны</string>
+    <string name="placeholder3">Длина третьей стороны</string>
 </resources>

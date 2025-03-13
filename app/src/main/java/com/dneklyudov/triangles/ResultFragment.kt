@@ -14,8 +14,8 @@ class ResultFragment : Fragment() {
     private var _binding: FragmentResultBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var viewModel: ResultViewModel
-    lateinit var viewModelFactory: ResultViewModelFactory
+    private lateinit var viewModel: ResultViewModel
+    private lateinit var viewModelFactory: ResultViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

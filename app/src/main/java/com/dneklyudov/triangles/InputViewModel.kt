@@ -1,5 +1,6 @@
 package com.dneklyudov.triangles
 
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData
@@ -26,6 +27,10 @@ class InputViewModel: ViewModel() {
     val errorMessage: LiveData<String>
         get() = _errorMessage
 
+    private val _errorMessageVisibility = MutableLiveData<Int>(View.GONE)
+    val errorMessageVisibility: LiveData<Int>
+        get() = _errorMessageVisibility
+
     private var isChanged1: Boolean = false
     private var isChanged2: Boolean = false
     private var isChanged3: Boolean = false
@@ -34,7 +39,7 @@ class InputViewModel: ViewModel() {
     private var n2: Int = 0
     private var n3: Int = 0
 
-    fun areValuesCorrect() {
+    private fun areValuesCorrect() {
 
         n1 = when (isChanged1) {
             true -> getNumber(_len1.value.toString())
@@ -76,25 +81,36 @@ class InputViewModel: ViewModel() {
 
         _isButtonActive.value = tempIsButtonActive
         _errorMessage.value = tempErrorMessage.trim()
+        _errorMessageVisibility.value = getErrorMessageVisibility(_errorMessage.value.toString())
 
     }
 
-    fun changeLen1(s: String) {
-        if (_len1.value == s) return
+    private fun getErrorMessageVisibility(s: String): Int {
+        return when (s) {
+            "" -> View.GONE
+            else -> View.VISIBLE
+        }
+    }
+
+    fun changeLen1(s: CharSequence) {
+        if (_len1.value == s.toString()) return
         isChanged1 = true
-        _len1.value = s
+        _len1.value = s.toString()
+        areValuesCorrect()
     }
 
-    fun changeLen2(s: String) {
-        if (_len2.value == s) return
+    fun changeLen2(s: CharSequence) {
+        if (_len2.value == s.toString()) return
         isChanged2 = true
-        _len2.value = s
+        _len2.value = s.toString()
+        areValuesCorrect()
     }
 
-    fun changeLen3(s: String) {
-        if (_len3.value == s) return
+    fun changeLen3(s: CharSequence) {
+        if (_len3.value == s.toString()) return
         isChanged3 = true
-        _len3.value = s
+        _len3.value = s.toString()
+        areValuesCorrect()
     }
 
     fun resultMessage(): String {

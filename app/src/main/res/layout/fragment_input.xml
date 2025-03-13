@@ -47,9 +47,9 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
-            android:text=""
+            android:text="@{inputViewModel.errorMessage}"
             android:textColor="@color/red"
-            android:visibility="gone"
+            android:visibility="@{inputViewModel.ErrorMessageVisibility}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -61,8 +61,10 @@
             android:gravity="center"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
-            android:text="0"
-            tools:ignore="Autofill,DuplicateSpeakableTextCheck,LabelFor,VisualLintOverlap" />
+            android:onTextChanged="@{(text, start, before, count) -> inputViewModel.changeLen1(text)}"
+            android:selectAllOnFocus="true"
+            android:text="@{inputViewModel.len1}"
+            tools:ignore="Autofill,DuplicateSpeakableTextCheck,LabelFor,VisualLintOverlap,SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/length2"
@@ -72,9 +74,10 @@
             android:gravity="center"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
-
-            android:text="0"
-            tools:ignore="Autofill,DuplicateSpeakableTextCheck,LabelFor,VisualLintOverlap" />
+            android:onTextChanged="@{(text, start, before, count) -> inputViewModel.changeLen2(text)}"
+            android:selectAllOnFocus="true"
+            android:text="@{inputViewModel.len2}"
+            tools:ignore="Autofill,DuplicateSpeakableTextCheck,LabelFor,VisualLintOverlap,SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/length3"
@@ -84,9 +87,10 @@
             android:gravity="center"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
-
-            android:text="0"
-            tools:ignore="Autofill,DuplicateSpeakableTextCheck,LabelFor,VisualLintOverlap" />
+            android:onTextChanged="@{(text, start, before, count) -> inputViewModel.changeLen3(text)}"
+            android:selectAllOnFocus="true"
+            android:text="@{inputViewModel.len3}"
+            tools:ignore="Autofill,DuplicateSpeakableTextCheck,LabelFor,VisualLintOverlap,SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/button"
@@ -95,6 +99,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
             android:text="@string/check"
+            android:enabled="@{inputViewModel.isButtonActive}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/flow" />
@@ -121,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
             android:layout_marginStart="5dp"
-            android:text="Длина первой стороны"
+            android:text="@string/placeholder1"
             app:layout_constraintStart_toStartOf="@+id/length1"
             app:layout_constraintTop_toTopOf="@+id/length1" />
 
@@ -131,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
             android:layout_marginStart="5dp"
-            android:text="Длина второй стороны"
+            android:text="@string/placeholder2"
             app:layout_constraintStart_toStartOf="@+id/length2"
             app:layout_constraintTop_toTopOf="@+id/length2" />
 
@@ -141,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
             android:layout_marginStart="5dp"
-            android:text="Длина третьей стороны"
+            android:text="@string/placeholder3"
             app:layout_constraintStart_toStartOf="@+id/length3"
             app:layout_constraintTop_toTopOf="@+id/length3" />
 
